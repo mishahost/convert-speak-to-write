@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<title>
+  project
+</title>
+<style>
+  h1
+  {
+    font-size:60px;
+    text-align: center;
+    font-family:sans-serif;
+  }
+  p
+  {
+    font-size:50px;
+    text-align: center;
+    font-family:sans-serif;
+    font-weight:bold;
+
+  }
+  #mic
+  {
+  font-size:50px;
+
+  }
+  #btn
+  {
+     border-radius: 50%;
+     border:inherit;
+     padding:15px 20px 15px 20px;
+     margin-left:20px;
+
+  }
+</style>
+</head>
+<body>
+    <h1>WELCOME TO MY FIRST WEBSITE</h1>
+    <p>Speech To Text Converter</p>
+    <button onclick="demo()" id="btn">
+    <i class="fa fa-microphone" id="mic"></i>
+  </button>
+  <p id="result"></p>
+  <script>
+   function demo()
+   {
+     const mic = document.querySelector("#mic");
+     const result = document.querySelector("#result");
+     const app = new webkitSpeechRecognition();
+     app.start();
+
+     app.onstart = function()
+     {
+       mic.style.color = "red";
+     }
+     app.onspeechend = function()
+     {
+       mic.style.color = "inherit";
+     }
+
+     app.onresult = function(e)
+     {
+       const voice = e.results[0][0].transcript;
+       result.innerHTML = voice;
+
+
+     }
+   }
+  </script>
+
+</body>
+</html>
